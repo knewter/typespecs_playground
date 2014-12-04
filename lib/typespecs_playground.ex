@@ -20,4 +20,16 @@ defmodule TypespecsPlayground do
   def add(%Add{first: first, second: second}) do
     first + second
   end
+
+  defmodule Bad do
+    @spec add(number, number) :: String.t
+    def add(first, second) do
+      TypespecsPlayground.add(first, second)
+    end
+
+    def crazy(maybe_atom) do
+      Dict.fetch(maybe_atom, :foo)
+      Atom.to_string(maybe_atom)
+    end
+  end
 end
